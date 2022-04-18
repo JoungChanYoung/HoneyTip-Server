@@ -22,12 +22,6 @@ public class PostController {
         return postService.findOne(id).get();
     }
 
-    @GetMapping("posts")
-    @ResponseBody
-    public List<Post> getPostAll() {
-        return postService.findPosts();
-    }
-
     @PostMapping("post")
     @ResponseBody
     public Long post(@RequestParam("title") String title, @RequestParam("contents") String contents) {
@@ -44,4 +38,11 @@ public class PostController {
         Long postId = postService.updatePost(id, title, contenst);
         return postService.findOne(postId).get();
     }
+
+    @GetMapping("posts")
+    @ResponseBody
+    public List<Post> getPostAll() {
+        return postService.findPosts();
+    }
+
 }
