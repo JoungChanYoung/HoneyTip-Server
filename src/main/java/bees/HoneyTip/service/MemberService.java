@@ -5,6 +5,7 @@ import bees.HoneyTip.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 public class MemberService {
 
@@ -30,9 +31,13 @@ public class MemberService {
         memberRepository.delete(member);
     }
 
-    //회원 조회
+    //Id로 회원 조회
     public Optional<Member> findOne(Long memberId) {
         return memberRepository.findById(memberId);
+    }
+    //모든 회원 조회
+    public List<Member> findMembers() {
+        return memberRepository.findAll();
     }
 
     //로그인
