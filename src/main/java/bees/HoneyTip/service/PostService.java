@@ -44,6 +44,7 @@ public class PostService {
         modifiedPost.setTitle(title);
         modifiedPost.setContents(contents);
 
+        // 수정시간 입력
         LocalDateTime now = LocalDateTime.now();
         modifiedPost.setModifiedTime(now);
 
