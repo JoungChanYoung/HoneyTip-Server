@@ -1,7 +1,12 @@
 package bees.HoneyTip.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Category {
+
     private Long id;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String name;
 
     public Long getId() {
