@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Post {
     private Long id;
-    private Long categoryId;
+    private Category category;
     private Member member;
     private String title;
     private String contents;
@@ -18,20 +18,20 @@ public class Post {
         likes = 0L;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public Long getHits() {
         return hits;
     }
 
     public void setHits(Long hits) {
         this.hits = hits;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
     }
 
     public Member getMember() {
