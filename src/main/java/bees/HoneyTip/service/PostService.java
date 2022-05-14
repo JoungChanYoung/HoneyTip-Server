@@ -30,7 +30,13 @@ public class PostService {
 
     // 게시물 가져오기
     public Optional<Post> findOne(Long postId) {
-        return postRepository.findById(postId);
+        Post findPost = postRepository.findById(postId).get();
+
+        // 조회수 증가
+        findPost.setHits(findPost.getHits()+1);
+        postRepository.update(postId, findPost);
+
+        return Optional.of(findPost);
     }
 
     public List<Post> findPosts(){
@@ -38,19 +44,18 @@ public class PostService {
     }
 
     // 제목, 내용 업데이트
-    public Long updatePost(Long postId, String title, String contents) {
-        Post modifiedPost = findOne(postId).get();
+    public Optional<Post> updatePost(Long postId, Post post) {
+        Post modifiedPost = postRepository.findById(postId).get();
 
-        modifiedPost.setTitle(title);
-        modifiedPost.setContents(contents);
+        modifiedPost.setTitle(post.getTitle());
+        modifiedPost.setContents(post.getContents());
 
         // 수정시간 입력
         LocalDateTime now = LocalDateTime.now();
         modifiedPost.setModifiedTime(now);
 
-        postRepository.update(postId, modifiedPost);
+        return postRepository.update(postId, modifiedPost);
 
-        return modifiedPost.getId();
     }
 
     // 게시물 삭제
