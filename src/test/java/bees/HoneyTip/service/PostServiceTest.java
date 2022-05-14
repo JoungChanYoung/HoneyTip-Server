@@ -50,9 +50,12 @@ class PostServiceTest {
         Long saveId = postService.posting(post);
 
         // when
+        Post post2 = new Post();
         String new_title = "제목2";
         String new_contents = "내용2";
-        postService.updatePost(saveId, new_title, new_contents);
+        post2.setTitle(new_title);
+        post2.setContents(new_contents);
+        postService.updatePost(saveId, post2);
 
         // then
         Post findPost = postService.findOne(saveId).get();
