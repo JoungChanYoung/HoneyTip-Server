@@ -17,14 +17,20 @@ public class CategoryController {
 
     @PostMapping("/category")
     @ResponseBody
-    public Long addCategory(@RequestBody Category category) {
-        return categoryService.add(category);
+    public Category addCategory(@RequestBody Category category){
+        return categoryService.addCategory(category);
+    }
+
+    @GetMapping("/category/{categoryId}")
+    @ResponseBody
+    public Category getCategory(@PathVariable("categoryId") Long categoryId){
+        return categoryService.getCategory(categoryId);
     }
 
     @GetMapping("/categorys")
     @ResponseBody
-    public List<Category> getCategoryAll(){
-        return categoryService.findCategorys();
+    public List<Category> getCategoryAll() {
+        return categoryService.getCategoryAll();
     }
 
 }
