@@ -1,21 +1,68 @@
 package bees.HoneyTip.domain;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "post")
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long categoryId;
-    private Member member;
-    private String title;
-    private String contents;
-    private Long hits;
-    private Long likes;
-    private LocalDateTime createdTime;
-    private LocalDateTime modifiedTime;
 
-    public Post(){
+    @ManyToOne
+    @JoinColumn(name = "id_category")
+    private Category category;
+
+//    @ManyToOne
+//    @JoinColumn(name = "id_member")
+//    private Member member;
+
+    @Column
+    private String title;
+
+    @Column
+    private String contents;
+
+    @Column
+    private Long hits;
+
+    @Column
+    private Long likes;
+
+    @Column
+    private LocalDateTime createdAt;
+
+    @Column
+    private LocalDateTime modifiedAt;
+
+    public Post() {
         hits = 0L;
         likes = 0L;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getModifiedAt() {
+        return modifiedAt;
+    }
+
+    public void setModifiedAt(LocalDateTime modifiedAt) {
+        this.modifiedAt = modifiedAt;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Long getHits() {
@@ -26,21 +73,13 @@ public class Post {
         this.hits = hits;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public Member getMember() {
-        return member;
-    }
-
-    public void setMember(Member member) {
-        this.member = member;
-    }
+//    public Member getMember() {
+//        return member;
+//    }
+//
+//    public void setMember(Member member) {
+//        this.member = member;
+//    }
 
     public String getContents() {
         return contents;
@@ -56,22 +95,6 @@ public class Post {
 
     public void setLikes(Long likes) {
         this.likes = likes;
-    }
-
-    public LocalDateTime getCreatedTime() {
-        return createdTime;
-    }
-
-    public void setCreatedTime(LocalDateTime createdTime) {
-        this.createdTime = createdTime;
-    }
-
-    public LocalDateTime getModifiedTime() {
-        return modifiedTime;
-    }
-
-    public void setModifiedTime(LocalDateTime modifiedTime) {
-        this.modifiedTime = modifiedTime;
     }
 
     public Long getId() {
