@@ -22,7 +22,7 @@ public class PostService {
 
         // set time now
         LocalDateTime now = LocalDateTime.now();
-        post.setCreatedTime(now);
+        post.setCreatedAt(now);
 
         postRepository.save(post);
         return post.getId();
@@ -52,7 +52,7 @@ public class PostService {
 
         // 수정시간 입력
         LocalDateTime now = LocalDateTime.now();
-        modifiedPost.setModifiedTime(now);
+        modifiedPost.setModifiedAt(now);
 
         return postRepository.update(postId, modifiedPost);
 
