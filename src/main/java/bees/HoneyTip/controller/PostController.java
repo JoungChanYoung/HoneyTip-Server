@@ -30,7 +30,7 @@ public class PostController {
 
     @PostMapping("/post")
     @ResponseBody
-    public Long post(@RequestBody Post post) {
+    public Post post(@RequestBody Post post) {
 
 //         set category object
         Category category = categoryService.getCategory(post.getCategory().getId());
@@ -44,7 +44,7 @@ public class PostController {
     @ResponseBody
     public Post post(@PathVariable("postId") Long id, @RequestBody Post post) {
         // TODO 관리자 또는 게시자만 수정 가능 추가
-        return postService.updatePost(id, post).get();
+        return postService.updatePost(id, post);
     }
 
     @DeleteMapping("/post/{postId}")

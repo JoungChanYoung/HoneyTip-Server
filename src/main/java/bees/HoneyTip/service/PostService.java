@@ -18,14 +18,14 @@ public class PostService {
     }
 
     // 게시물 등록
-    public Long posting(Post post) {
+    public Post posting(Post post) {
 
         // set time now
         LocalDateTime now = LocalDateTime.now();
         post.setCreatedAt(now);
 
         postRepository.save(post);
-        return post.getId();
+        return post;
     }
 
     // 게시물 가져오기
@@ -34,7 +34,7 @@ public class PostService {
 
         // 조회수 증가
         findPost.setHits(findPost.getHits()+1);
-        postRepository.update(postId, findPost);
+        postRepository.save(findPost);
 
         return Optional.of(findPost);
     }
@@ -44,7 +44,7 @@ public class PostService {
     }
 
     // 제목, 내용 업데이트
-    public Optional<Post> updatePost(Long postId, Post post) {
+    public Post updatePost(Long postId, Post post) {
         Post modifiedPost = postRepository.findById(postId).get();
 
         modifiedPost.setTitle(post.getTitle());
@@ -54,7 +54,7 @@ public class PostService {
         LocalDateTime now = LocalDateTime.now();
         modifiedPost.setModifiedAt(now);
 
-        return postRepository.update(postId, modifiedPost);
+        return postRepository.save(modifiedPost);
 
     }
 
@@ -64,7 +64,7 @@ public class PostService {
     }
 
     // 게시물 개수 가져오기
-    public int count() {
+    public Long count() {
         return postRepository.count();
     }
 }

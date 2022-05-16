@@ -1,19 +1,42 @@
 package bees.HoneyTip.domain;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "post")
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "id_category")
     private Category category;
-    private Member member;
+
+//    @ManyToOne
+//    @JoinColumn(name = "id_member")
+//    private Member member;
+
+    @Column
     private String title;
+
+    @Column
     private String contents;
+
+    @Column
     private Long hits;
+
+    @Column
     private Long likes;
+
+    @Column
     private LocalDateTime createdAt;
+
+    @Column
     private LocalDateTime modifiedAt;
 
-    public Post(){
+    public Post() {
         hits = 0L;
         likes = 0L;
     }
@@ -50,13 +73,13 @@ public class Post {
         this.hits = hits;
     }
 
-    public Member getMember() {
-        return member;
-    }
-
-    public void setMember(Member member) {
-        this.member = member;
-    }
+//    public Member getMember() {
+//        return member;
+//    }
+//
+//    public void setMember(Member member) {
+//        this.member = member;
+//    }
 
     public String getContents() {
         return contents;
