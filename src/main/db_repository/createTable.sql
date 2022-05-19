@@ -1,4 +1,5 @@
 'post table 생성 query'
+"
 CREATE TABLE `honeytip`.`post` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_category` INT NOT NULL,
@@ -11,3 +12,19 @@ CREATE TABLE `honeytip`.`post` (
   `modified_at` DATETIME NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
+"
+
+'comment table 생성 query'
+"
+CREATE TABLE `honeytip`.`comment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_post` INT NOT NULL,
+  `id_member` INT NOT NULL,
+  `contents` VARCHAR(45) NOT NULL,
+  `likes` INT NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `modified_at` DATETIME NULL,
+  `refId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
+"
